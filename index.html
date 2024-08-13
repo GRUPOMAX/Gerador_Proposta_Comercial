@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Propostas</title>
     <link rel="apple-touch-icon" sizes="180x180" href="https://grupomax.github.io/Gerador_Proposta_Comercial/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="https://grupomax.github.io/Gerador_Proposta_Comercial/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://grupomax.github.io/Gerador_Proposta_Comercial/favicon-16x16.png">
     <link rel="manifest" href="https://grupomax.github.io/Gerador_Proposta_Comercial/site.webmanifest">
-    <title>Gerador de Propostas</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -95,13 +96,16 @@
             <option value="1000">1000 mb</option>
         </select>
 
-            <!-- Botões para baixar e visualizar o PDF -->
-            <button class="btn-download" onclick="downloadPDF()">Baixar Proposta em PDF</button>
-            <button class="btn-preview" onclick="generatePDF()">Visualizar Proposta em PDF</button>
+        <!-- Botões para baixar e visualizar o PDF -->
+        <button class="btn-download" onclick="downloadPDF()">Baixar Proposta Completa em PDF</button>
+        <button class="btn-preview" onclick="generatePDF()">Visualizar somente a Proposta em PDF</button>
     
     </div>
 
     <!-- Inclua seu script após a inclusão da biblioteca jsPDF -->
-    <script src="script.js"></script>
+    <script src="script.js" type="module"></script>
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+
+
 </body>
 </html>
