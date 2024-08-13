@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Propostas</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Gerador de Propostas</h1>
+        <p>Preencha os campos abaixo para gerar a proposta.</p>
+
+        <!-- Campos do formulário -->
+        <label for="empresa">Nome da Empresa:</label>
+        <input type="text" id="empresa">
+
+        <label for="responsavel">Responsável da Empresa:</label>
+        <input type="text" id="responsavel">
+
+        <label for="validade">Validade da Proposta:</label>
+        <select id="validade">
+            <option value="5">5 dias</option>
+            <option value="10">10 dias</option>
+            <option value="20">20 dias</option>
+            <option value="30">30 dias</option>
+            <option value="Indefinido">Indefinido</option>
+        </select>
+        
+
+        <label for="numeroProposta">Número da Proposta:</label>
+        <input type="text" id="numeroProposta">
+
+        <label for="valorProposta">Valor da Proposta:</label>
+        <input type="text" id="valorProposta">
+
+        <label for="vendedor">Vendedor:</label>
+        <input type="text" id="vendedor">
+
+        <h2>Atividade Operacional</h2>
+        <label><input type="checkbox" id="linkDedicado"> Link dedicado</label><br>
+        <label><input type="checkbox" id="ipValido"> IP Valído</label><br>
+        <label><input type="checkbox" id="ipFixo"> IP FIXO</label><br>
+
+        <h2>Suporte</h2>
+        <label><input type="checkbox" id="suporteWhatsapp"> Atendimento 24hrs pelo WhatsApp com a Assistente Virtual</label><br>
+        <label><input type="checkbox" id="suporteDedicado"> Suporte Dedicado a Empresa</label><br>
+        
+        <label for="sla">S.L.A Técnico:</label>
+        <select id="sla">
+            <option value="4 Horas">4 Horas</option>
+            <option value="8 Horas">8 Horas</option>
+            <option value="24 Horas">24 Horas</option>
+        </select>
+       
+        <label for="taxaInstalacao">Taxa de Instalação:</label>
+        <input type="text" id="taxaInstalacao">
+
+        <label for="duracaoServicos">Duração dos Serviços:</label>
+        <select id="duracaoServicos">
+            <option value="6 Meses">6 Meses</option>
+            <option value="12 Meses">12 Meses</option>
+        </select>
+
+        <label for="velocidadeDownload">Velocidade de Download:</label>
+        <select id="velocidadeDownload">
+            <option value="100">100 mb</option>
+            <option value="200">200 mb</option>
+            <option value="300">300 mb</option>
+            <option value="400">400 mb</option>
+            <option value="500">500 mb</option>
+            <option value="600">600 mb</option>
+            <option value="700">700 mb</option>
+            <option value="800">800 mb</option>
+            <option value="900">900 mb</option>
+            <option value="1000">1000 mb</option>
+        </select>
+
+        <label for="velocidadeUpload">Velocidade de Upload:</label>
+        <select id="velocidadeUpload">
+            <option value="100">100 mb</option>
+            <option value="200">200 mb</option>
+            <option value="300">300 mb</option>
+            <option value="400">400 mb</option>
+            <option value="500">500 mb</option>
+            <option value="600">600 mb</option>
+            <option value="700">700 mb</option>
+            <option value="800">800 mb</option>
+            <option value="900">900 mb</option>
+            <option value="1000">1000 mb</option>
+        </select>
+
+            <!-- Botões para baixar e visualizar o PDF -->
+            <button class="btn-download" onclick="downloadPDF()">Baixar Proposta em PDF</button>
+            <button class="btn-preview" onclick="generatePDF()">Visualizar Proposta em PDF</button>
+    
+    </div>
+
+    <!-- Inclua seu script após a inclusão da biblioteca jsPDF -->
+    <script src="script.js"></script>
+</body>
+</html>
