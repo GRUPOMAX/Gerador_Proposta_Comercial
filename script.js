@@ -221,7 +221,7 @@ function generatePDF() {
 
     //==========================================================================
 
-        // Adiciona o título "DURAÇÃO DOS SERVIÇOS" e o texto com formatação
+        // Adiciona o título "PRAZO DO CONTRATO" e o texto com formatação
         doc.setFontSize(16);
         doc.setFont('helvetica', 'bold');
         doc.text('PRAZO DO CONTRATO', col1X, yPosSecondPage);
@@ -230,7 +230,7 @@ function generatePDF() {
         // Adiciona o texto do contrato
         doc.setFontSize(14);
         doc.setFont('helvetica', 'normal');
-        doc.text('O prazo de Duração do Contrato é de', col1X, yPosSecondPage);
+        doc.text('A duração do contrato de serviços é de', col1X, yPosSecondPage);
         yPosSecondPage += 7; // Ajusta a posição para o próximo texto
         doc.setFont('helvetica', 'bold');
         doc.text(`${duracaoContrato} meses,`, col1X, yPosSecondPage);
@@ -318,6 +318,9 @@ function generatePDF() {
 
 
 async function downloadPDF() {
+    const { jsPDF } = window.jspdf; // Acesso à biblioteca jsPDF
+    const doc = new jsPDF();
+    
     // Captura os valores dos campos do formulário
     const empresa = document.getElementById('empresa')?.value || 'Empresa Exemplo';
     const responsavel = document.getElementById('responsavel')?.value || 'Responsável Exemplo';
@@ -516,7 +519,7 @@ async function downloadPDF() {
 
     //==========================================================================
 
-        // Adiciona o título "DURAÇÃO DOS SERVIÇOS" e o texto com formatação
+        // Adiciona o título "PRAZO DO CONTRATO" e o texto com formatação
         doc.setFontSize(16);
         doc.setFont('helvetica', 'bold');
         doc.text('PRAZO DO CONTRATO', col1X, yPosSecondPage);
@@ -525,7 +528,7 @@ async function downloadPDF() {
         // Adiciona o texto do contrato
         doc.setFontSize(14);
         doc.setFont('helvetica', 'normal');
-        doc.text('O prazo de Duração do Contrato é de', col1X, yPosSecondPage);
+        doc.text('A duração do contrato de serviços é de', col1X, yPosSecondPage);
         yPosSecondPage += 7; // Ajusta a posição para o próximo texto
         doc.setFont('helvetica', 'bold');
         doc.text(`${duracaoContrato} meses,`, col1X, yPosSecondPage);
