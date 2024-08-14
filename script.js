@@ -224,13 +224,13 @@ function generatePDF() {
         // Adiciona o título "DURAÇÃO DOS SERVIÇOS" e o texto com formatação
         doc.setFontSize(16);
         doc.setFont('helvetica', 'bold');
-        doc.text('DURAÇÃO DOS SERVIÇOS', col1X, yPosSecondPage);
+        doc.text('PRAZO DO CONTRATO', col1X, yPosSecondPage);
         yPosSecondPage += 7; // Ajusta a posição para o texto abaixo do título
 
         // Adiciona o texto do contrato
         doc.setFontSize(14);
         doc.setFont('helvetica', 'normal');
-        doc.text('A duração do contrato de serviços é de', col1X, yPosSecondPage);
+        doc.text('O prazo de Duração do Contrato é de', col1X, yPosSecondPage);
         yPosSecondPage += 7; // Ajusta a posição para o próximo texto
         doc.setFont('helvetica', 'bold');
         doc.text(`${duracaoContrato} meses,`, col1X, yPosSecondPage);
