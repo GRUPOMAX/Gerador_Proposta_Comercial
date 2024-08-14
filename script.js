@@ -1,6 +1,6 @@
 
 // Função para adicionar o logo e o nome do vendedor na parte inferior direita
-function addFooter(doc, xPos, yPos, logoSrc, vendedor) {
+function addFooter(doc, xPos, yPos, logoSrc) {
     const logoWidth = 35;
     const logoHeight = 20;
     
@@ -14,7 +14,7 @@ function addFooter(doc, xPos, yPos, logoSrc, vendedor) {
     // Adiciona o nome do vendedor
     doc.setFontSize(12);
     doc.setFont('helvetica', 'normal');
-    doc.text(`${vendedor}`, xPos - -5 - logoWidth, yPos - -5);
+    //doc.text(`${vendedor}`, xPos - -5 - logoWidth, yPos - -5);
 }
 
 
@@ -71,8 +71,10 @@ function generatePDF() {
         doc.setFontSize(14);
         doc.text(`Empresa: ${empresa}`, 10, 10);
         doc.text(`Validade: ${validade} Dias`, 140, 10);
-        doc.text(`Contato: ${responsavel}`, 10, 20);
-        doc.text(`Porposta: Nº ${numeroProposta}`, 140, 20);
+        doc.text(`Contato: ${responsavel}`, 10, 17);
+        doc.text(`Porposta: Nº ${numeroProposta}`, 140, 17);
+        doc.text(`Vendedor: ${vendedor}`, 140, 24);
+
         doc.setTextColor(0, 0, 0); // Resetando a cor do texto para preto
     }
 
@@ -136,14 +138,14 @@ function generatePDF() {
     yPos += 10;
     doc.setFontSize(14);
     if (suporteWhatsapp) {
-        doc.text('• Atendimento 24hrs pelo WhatsApp com a Assistente Virtual.', 10, yPos);
+        doc.text('• Atendimento 24hrs pelo whatsApp com a Assistente Virtual.', 10, yPos);
         yPos += 10;
     }
     if (suporteDedicado) {
-        doc.text('• Suporte Dedicado a Empresa.', 10, yPos);
+        doc.text('• Suporte dedicado a empresa.', 10, yPos);
         yPos += 10;
     }
-    doc.text(`• S.L.A Técnico ${sla}.`, 10, yPos);
+    doc.text(`• S.L.A técnico ${sla}.`, 10, yPos);
     yPos += 20;
 
     // Seção ATIVIDADE OPERACIONAL
@@ -153,9 +155,9 @@ function generatePDF() {
     doc.setFont('helvetica', 'normal');
     yPos += 10;
     doc.setFontSize(14);
-    doc.text('• Fornecimento Interrupto de Serviço de Internet.', 10, yPos);
+    doc.text('• Fornecimento ininterrupto de serviço de internet.', 10, yPos);
     yPos += 10;
-    doc.text('• Suporte Especializado.', 10, yPos);
+    doc.text('• Suporte especializado.', 10, yPos);
     yPos += 10;
 
     if (linkDedicado) {
@@ -163,11 +165,11 @@ function generatePDF() {
         yPos += 10;
     }
     if (ipValido) {
-        doc.text('• IP Valído.', 10, yPos);
+        doc.text('• IP valído.', 10, yPos);
         yPos += 10;
     }
     if (ipFixo) {
-        doc.text('• IP Fixo.', 10, yPos);
+        doc.text('• IP fixo.', 10, yPos);
         yPos += 10;
     }
 
@@ -179,7 +181,7 @@ function generatePDF() {
     }
             
         // Adiciona o logo e o nome do vendedor na parte inferior direita da segunda página
-        addFooter(doc, 198, 280, logoSrc, vendedor);
+        addFooter(doc, 198, 280, logoSrc);
 
 
     // Adiciona uma nova página
@@ -233,8 +235,21 @@ function generatePDF() {
         doc.setFont('helvetica', 'bold');
         doc.text(`${duracaoContrato} meses,`, col1X, yPosSecondPage);
         yPosSecondPage += 7; // Ajusta a posição para o próximo texto
+        doc.setFont('helvetica', 'normal');// Texto antes de "Max Fibra"
+        const beforeText = 'durante a qual a';
+        // Texto depois de "Max Fibra"
+        const afterText = 'irá prestar o fornecimento ininterrupto de internet.';
+        
+        // Adicione o texto antes de "Max Fibra"
+        doc.text(beforeText, col1X, yPosSecondPage, { maxWidth: columnWidth });
+        
+        // Adicione "Max Fibra" em negrito
+        doc.setFont('helvetica', 'bold');
+        doc.text('Max Fibra', doc.getTextWidth(beforeText) + col1X, yPosSecondPage, { maxWidth: columnWidth });
+         yPosSecondPage += 20;       
+        // Volte para a fonte normal e adicione o texto restante
         doc.setFont('helvetica', 'normal');
-        doc.text('durante a qual a Max Fibra irá prestar o fornecimento ininterrupto de internet.', col1X, yPosSecondPage, { maxWidth: columnWidth });
+        doc.text(afterText, doc.getTextWidth(beforeText + ' Max Fibra') + -49, 135,);
         yPosSecondPage += 20; // Adiciona espaço para o próximo bloco de texto
 
 
@@ -245,7 +260,7 @@ function generatePDF() {
         yPosSecondPage += 7;
         doc.setFontSize(14);
         doc.setFont('helvetica', 'normal');
-        doc.text('Antecipado e Mensal', col1X, yPosSecondPage);
+        doc.text('Antecipado e mensal', col1X, yPosSecondPage);
         yPosSecondPage += 18;
     
     //==========================================================================
@@ -255,19 +270,19 @@ function generatePDF() {
         yPosSecondPage += 7;
         doc.setFontSize(14);
         doc.setFont('helvetica', 'normal');
-        doc.text(`A Taxa de Instalação dos Serviços contratados será de R$ ${taxaInstalacao}`, col1X, yPosSecondPage);
+        doc.text(`A Taxa de instalação dos serviços contratados será de R$ ${taxaInstalacao}`, col1X, yPosSecondPage);
         yPosSecondPage += 20;
 
     //==========================================================================
     // Adiciona título e conteúdo da segunda coluna
         doc.setFontSize(16);
         doc.setFont('helvetica', 'bold');
-        doc.text('Velocidade Do Plano Contratado', col1X, yPosSecondPage);
+        doc.text('Velocidade do plano contratado', col1X, yPosSecondPage);
         yPosSecondPage += 7;
 
         doc.setFontSize(14);
         doc.setFont('helvetica', 'normal');
-        doc.text('A Velocidade de', col1X, yPosSecondPage);
+        doc.text('A velocidade de', col1X, yPosSecondPage);
         yPosSecondPage += 7;
 
     //==========================================================================
@@ -292,7 +307,7 @@ function generatePDF() {
 
         
         // Adiciona o logo e o nome do vendedor na parte inferior direita da segunda página
-        addFooter(doc, 198, 280, logoSrc, vendedor);
+        addFooter(doc, 198, 280, logoSrc,);
 
     // Visualiza o PDF em vez de baixá-lo
     doc.output('dataurlnewwindow');
@@ -305,8 +320,6 @@ function generatePDF() {
 async function downloadPDF() {
     const { jsPDF } = window.jspdf; // Acesso à biblioteca jsPDF
     const doc = new jsPDF();
-
-    console.log("Função downloadPDF chamada!");
     
     // Captura os valores dos campos do formulário
     const empresa = document.getElementById('empresa')?.value || 'Empresa Exemplo';
@@ -327,8 +340,7 @@ async function downloadPDF() {
     const suporteDedicado = document.getElementById('suporteDedicado')?.checked;
     const sla = document.getElementById('sla')?.value || '24 horas'; // Valor padrão
 
-
-        // Captura os valores da segunda página
+    // Captura os valores da segunda página
     function getSecondPageValues() {
         const duracaoContratoElement = document.getElementById('duracaoContrato');
         const taxaInstalacaoElement = document.getElementById('taxaInstalacao');
@@ -357,8 +369,10 @@ async function downloadPDF() {
         doc.setFontSize(14);
         doc.text(`Empresa: ${empresa}`, 10, 10);
         doc.text(`Validade: ${validade} Dias`, 140, 10);
-        doc.text(`Contato: ${responsavel}`, 10, 20);
-        doc.text(`Porposta: Nº ${numeroProposta}`, 140, 20);
+        doc.text(`Contato: ${responsavel}`, 10, 17);
+        doc.text(`Porposta: Nº ${numeroProposta}`, 140, 17);
+        doc.text(`Vendedor: ${vendedor}`, 140, 24);
+
         doc.setTextColor(0, 0, 0); // Resetando a cor do texto para preto
     }
 
@@ -422,14 +436,14 @@ async function downloadPDF() {
     yPos += 10;
     doc.setFontSize(14);
     if (suporteWhatsapp) {
-        doc.text('• Atendimento 24hrs pelo WhatsApp com a Assistente Virtual.', 10, yPos);
+        doc.text('• Atendimento 24hrs pelo whatsApp com a Assistente Virtual.', 10, yPos);
         yPos += 10;
     }
     if (suporteDedicado) {
-        doc.text('• Suporte Dedicado a Empresa.', 10, yPos);
+        doc.text('• Suporte dedicado a empresa.', 10, yPos);
         yPos += 10;
     }
-    doc.text(`• S.L.A Técnico ${sla}.`, 10, yPos);
+    doc.text(`• S.L.A técnico ${sla}.`, 10, yPos);
     yPos += 20;
 
     // Seção ATIVIDADE OPERACIONAL
@@ -439,9 +453,9 @@ async function downloadPDF() {
     doc.setFont('helvetica', 'normal');
     yPos += 10;
     doc.setFontSize(14);
-    doc.text('• Fornecimento Interrupto de Serviço de Internet.', 10, yPos);
+    doc.text('• Fornecimento ininterrupto de serviço de internet.', 10, yPos);
     yPos += 10;
-    doc.text('• Suporte Especializado.', 10, yPos);
+    doc.text('• Suporte especializado.', 10, yPos);
     yPos += 10;
 
     if (linkDedicado) {
@@ -449,11 +463,11 @@ async function downloadPDF() {
         yPos += 10;
     }
     if (ipValido) {
-        doc.text('• IP Valído.', 10, yPos);
+        doc.text('• IP valído.', 10, yPos);
         yPos += 10;
     }
     if (ipFixo) {
-        doc.text('• IP Fixo.', 10, yPos);
+        doc.text('• IP fixo.', 10, yPos);
         yPos += 10;
     }
 
@@ -465,7 +479,7 @@ async function downloadPDF() {
     }
             
         // Adiciona o logo e o nome do vendedor na parte inferior direita da segunda página
-        addFooter(doc, 198, 280, logoSrc, vendedor);
+        addFooter(doc, 198, 280, logoSrc);
 
 
     // Adiciona uma nova página
@@ -519,8 +533,21 @@ async function downloadPDF() {
         doc.setFont('helvetica', 'bold');
         doc.text(`${duracaoContrato} meses,`, col1X, yPosSecondPage);
         yPosSecondPage += 7; // Ajusta a posição para o próximo texto
+        doc.setFont('helvetica', 'normal');// Texto antes de "Max Fibra"
+        const beforeText = 'durante a qual a';
+        // Texto depois de "Max Fibra"
+        const afterText = 'irá prestar o fornecimento ininterrupto de internet.';
+        
+        // Adicione o texto antes de "Max Fibra"
+        doc.text(beforeText, col1X, yPosSecondPage, { maxWidth: columnWidth });
+        
+        // Adicione "Max Fibra" em negrito
+        doc.setFont('helvetica', 'bold');
+        doc.text('Max Fibra', doc.getTextWidth(beforeText) + col1X, yPosSecondPage, { maxWidth: columnWidth });
+         yPosSecondPage += 20;       
+        // Volte para a fonte normal e adicione o texto restante
         doc.setFont('helvetica', 'normal');
-        doc.text('durante a qual a Max Fibra irá prestar o fornecimento ininterrupto de internet.', col1X, yPosSecondPage, { maxWidth: columnWidth });
+        doc.text(afterText, doc.getTextWidth(beforeText + ' Max Fibra') + -49, 135,);
         yPosSecondPage += 20; // Adiciona espaço para o próximo bloco de texto
 
 
@@ -531,7 +558,7 @@ async function downloadPDF() {
         yPosSecondPage += 7;
         doc.setFontSize(14);
         doc.setFont('helvetica', 'normal');
-        doc.text('Antecipado e Mensal', col1X, yPosSecondPage);
+        doc.text('Antecipado e mensal', col1X, yPosSecondPage);
         yPosSecondPage += 18;
     
     //==========================================================================
@@ -541,19 +568,19 @@ async function downloadPDF() {
         yPosSecondPage += 7;
         doc.setFontSize(14);
         doc.setFont('helvetica', 'normal');
-        doc.text(`A Taxa de Instalação dos Serviços contratados será de R$ ${taxaInstalacao}`, col1X, yPosSecondPage);
+        doc.text(`A Taxa de instalação dos serviços contratados será de R$ ${taxaInstalacao}`, col1X, yPosSecondPage);
         yPosSecondPage += 20;
 
     //==========================================================================
     // Adiciona título e conteúdo da segunda coluna
         doc.setFontSize(16);
         doc.setFont('helvetica', 'bold');
-        doc.text('Velocidade Do Plano Contratado', col1X, yPosSecondPage);
+        doc.text('Velocidade do plano contratado', col1X, yPosSecondPage);
         yPosSecondPage += 7;
 
         doc.setFontSize(14);
         doc.setFont('helvetica', 'normal');
-        doc.text('A Velocidade de', col1X, yPosSecondPage);
+        doc.text('A velocidade de', col1X, yPosSecondPage);
         yPosSecondPage += 7;
 
     //==========================================================================
@@ -574,11 +601,41 @@ async function downloadPDF() {
 
         doc.setFontSize(12);
         doc.setFont('helvetica', 'italic');
-        doc.text('Obs: Os valores dos planos de Velocidades Mudam de Acordo com o Plano', col1X, yPosSecondPage, { maxWidth: columnWidth });
+        doc.text('Obs: Os valores dos planos de velocidades mudam de acordo com o plano', col1X, yPosSecondPage, { maxWidth: columnWidth });
 
         
         // Adiciona o logo e o nome do vendedor na parte inferior direita da segunda página
-        addFooter(doc, 198, 280, logoSrc, vendedor);
+        addFooter(doc, 198, 280, logoSrc,);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // Converte o PDF gerado pelo jsPDF para arraybuffer
         const pdfBytes = doc.output('arraybuffer');
