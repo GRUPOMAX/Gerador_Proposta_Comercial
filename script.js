@@ -233,7 +233,7 @@ function generatePDF() {
         doc.text('A duração do contrato de serviços é de', col1X, yPosSecondPage);
         yPosSecondPage += 7; // Ajusta a posição para o próximo texto
         doc.setFont('helvetica', 'bold');
-        doc.text(`${duracaoContrato} meses,`, col1X, yPosSecondPage);
+        doc.text(`${duracaoContrato} ,`, col1X, yPosSecondPage);
         yPosSecondPage += 7; // Ajusta a posição para o próximo texto
         doc.setFont('helvetica', 'normal');// Texto antes de "Max Fibra"
         const beforeText = 'durante a qual a';
@@ -348,7 +348,7 @@ async function downloadPDF() {
         const velocidadeUploadElement = document.getElementById('velocidadeUpload');
 
         return {
-            duracaoContrato: duracaoContratoElement ? duracaoContratoElement.value : '6', // Padrão para 6 meses
+            duracaoContrato: duracaoContratoElement ? duracaoContratoElement.value : 'Sem Fidelidade', // Padrão para 6 meses
             taxaInstalacao: taxaInstalacaoElement ? taxaInstalacaoElement.value : '0', // Padrão para 0
             velocidadeDownload: velocidadeDownloadElement ? velocidadeDownloadElement.value : '100', // Padrão para 100 mb
             velocidadeUpload: velocidadeUploadElement ? velocidadeUploadElement.value : '100' // Padrão para 100 mb
@@ -531,7 +531,7 @@ async function downloadPDF() {
         doc.text('A duração do contrato de serviços é de', col1X, yPosSecondPage);
         yPosSecondPage += 7; // Ajusta a posição para o próximo texto
         doc.setFont('helvetica', 'bold');
-        doc.text(`${duracaoContrato} meses,`, col1X, yPosSecondPage);
+        doc.text(`${duracaoContrato} ,`, col1X, yPosSecondPage);
         yPosSecondPage += 7; // Ajusta a posição para o próximo texto
         doc.setFont('helvetica', 'normal');// Texto antes de "Max Fibra"
         const beforeText = 'durante a qual a';
