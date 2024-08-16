@@ -221,10 +221,10 @@ function generatePDF() {
 
     //==========================================================================
 
-        // Adiciona o título "DURAÇÃO DOS SERVIÇOS" e o texto com formatação
+        // Adiciona o título "PRAZO DO CONTRATO" e o texto com formatação
         doc.setFontSize(16);
         doc.setFont('helvetica', 'bold');
-        doc.text('DURAÇÃO DOS SERVIÇOS', col1X, yPosSecondPage);
+        doc.text('PRAZO DO CONTRATO', col1X, yPosSecondPage);
         yPosSecondPage += 7; // Ajusta a posição para o texto abaixo do título
 
         // Adiciona o texto do contrato
@@ -519,10 +519,10 @@ async function downloadPDF() {
 
     //==========================================================================
 
-        // Adiciona o título "DURAÇÃO DOS SERVIÇOS" e o texto com formatação
+        // Adiciona o título "PRAZO DO CONTRATO" e o texto com formatação
         doc.setFontSize(16);
         doc.setFont('helvetica', 'bold');
-        doc.text('DURAÇÃO DOS SERVIÇOS', col1X, yPosSecondPage);
+        doc.text('PRAZO DO CONTRATO', col1X, yPosSecondPage);
         yPosSecondPage += 7; // Ajusta a posição para o texto abaixo do título
 
         // Adiciona o texto do contrato
@@ -601,12 +601,11 @@ async function downloadPDF() {
 
         doc.setFontSize(12);
         doc.setFont('helvetica', 'italic');
-        doc.text('Obs: Os valores dos planos de velocidades mudam de acordo com o plano', col1X, yPosSecondPage, { maxWidth: columnWidth });
+        doc.text('Obs: Os valores dos planos de Velocidades Mudam de Acordo com o Plano', col1X, yPosSecondPage, { maxWidth: columnWidth });
 
         
         // Adiciona o logo e o nome do vendedor na parte inferior direita da segunda página
         addFooter(doc, 198, 280, logoSrc,);
-
 
 
 
