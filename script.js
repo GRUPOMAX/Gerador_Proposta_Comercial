@@ -18,6 +18,8 @@ function addFooter(doc, xPos, yPos, logoSrc) {
 }
 
 
+
+
 // Função para gerar e visualizar o PDF
 function generatePDF() {
     const { jsPDF } = window.jspdf; // Acesso à biblioteca jsPDF

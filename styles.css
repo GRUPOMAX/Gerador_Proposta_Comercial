@@ -64,6 +64,20 @@ input[type="number"]:focus,
 select:focus {
     border-color: #05aa29;
     box-shadow: 0 0 5px rgba(13, 209, 6, 0.5);
+    outline: 2px solid #05aa29; /* Adiciona um destaque claro */
+}
+
+fieldset {
+    border: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+legend {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
 }
 
 input[type="checkbox"] {
@@ -81,17 +95,18 @@ h2 {
 
 /* Estilos gerais do botão */
 button {
-    background-color: #007bff; /* Cor de fundo do botão */
-    color: #fff; /* Cor do texto */
-    border: none; /* Remove a borda padrão */
-    padding: 10px 20px; /* Espaçamento interno */
-    font-size: 16px; /* Tamanho da fonte */
-    border-radius: 5px; /* Bordas arredondadas */
-    cursor: pointer; /* Cursor pointer ao passar o mouse */
-    transition: background-color 0.3s, transform 0.3s; /* Transição suave para cor e transformação */
-    margin: 5px; /* Margem entre os botões */
+    background-color: #007bff;
+    color: #fff;
+    margin-top: 34px;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-bottom: 14px;
+    /* margin: 10px 5px 0 5px; */
 }
-
 /* Estilo para o botão ao passar o mouse */
 button:hover {
     background-color: #0056b3; /* Cor de fundo ao passar o mouse */
@@ -100,6 +115,7 @@ button:hover {
 
 /* Estilo específico para o botão de visualizar */
 .btn-preview {
+    margin-top: 20px;
     background-color: #28a745; /* Cor de fundo do botão de visualizar */
 }
 
@@ -116,6 +132,70 @@ button:hover {
     background-color: #0056b3; /* Cor de fundo ao passar o mouse para o botão de baixar */
 }
 
+/* Estilo para sliders (range) */
+input[type="range"] {
+    margin-bottom: 20px; /* Aumentar a margem abaixo do slider */
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    transition: background 0.3s;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #05aa29;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #05aa29;
+    cursor: pointer;
+}
+
+input[type="range"]:hover {
+    background: #b3b3b3;
+}
+
+
+/* Aumentar o espaçamento entre o valor do slider e o botão */
+#downloadValue, #uploadValue {
+    display: block; /* Garantir que o valor fique em uma nova linha */
+    margin-bottom: 15px; /* Adicionar margem inferior para afastar do botão */
+    font-size: 16px;
+    color: #333;
+}
+
+
+/* Estilo para o select */
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+select:focus {
+    border-color: #05aa29;
+    box-shadow: 0 0 5px rgba(13, 209, 6, 0.5);
+    outline: 2px solid #05aa29;
+}
+
+
+/* Responsividade para telas menores */
 @media (max-width: 600px) {
     .container {
         padding: 15px;
