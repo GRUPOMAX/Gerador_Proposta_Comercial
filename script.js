@@ -18,6 +18,127 @@ function addFooter(doc, xPos, yPos, logoSrc) {
 }
 
 
+// Função para abrir o modal
+function openPlanModal() {
+    document.getElementById('planModal').style.display = 'block';
+}
+
+// Função para fechar o modal
+function closePlanModal() {
+    document.getElementById('planModal').style.display = 'none';
+}
+
+// Função para carregar planos do localStorage e adicioná-los ao dropdown
+function loadPlans() {
+    const valorPropostaSelect = document.getElementById('valorProposta');
+    valorPropostaSelect.innerHTML = ''; // Limpa o dropdown antes de carregar os planos
+
+    // Carrega os planos do localStorage, se existirem
+    let storedPlans = JSON.parse(localStorage.getItem('planos'));
+
+    // Se não houver planos salvos, cria os planos padrão
+    if (!storedPlans || storedPlans.length === 0) {
+        console.log("Nenhum plano encontrado no localStorage. Carregando planos padrão.");
+        storedPlans = [
+            { text: 'Startup Company - R$ 199,90 / mês', value: '199.90' },
+            { text: 'Medium Company - R$ 299,90 / mês', value: '299.90' },
+            { text: 'Big Company - R$ 399,90 / mês', value: '399.90' }
+        ];
+        localStorage.setItem('planos', JSON.stringify(storedPlans)); // Salva os planos padrão no localStorage
+    }
+
+    // Adiciona os planos ao dropdown
+    storedPlans.forEach(plan => {
+        const newOption = document.createElement('option');
+        newOption.text = plan.text;
+        newOption.value = plan.value;
+        valorPropostaSelect.add(newOption);
+    });
+}
+
+
+// Função para adicionar um novo plano usando o modal
+function addCustomPlan() {
+    const planName = document.getElementById('planName').value.trim();
+    const planValue = parseFloat(document.getElementById('planValue').value).toFixed(2);
+
+    if (planName && planValue && !isNaN(planValue)) {
+        const customPlanoText = `${planName} - R$ ${planValue} / mês`;
+        
+        const valorPropostaSelect = document.getElementById('valorProposta');
+        
+        // Cria uma nova opção no dropdown
+        const newOption = document.createElement('option');
+        newOption.text = customPlanoText;
+        newOption.value = planValue;
+
+        // Adiciona a nova opção ao dropdown
+        valorPropostaSelect.add(newOption);
+
+        // Salva o plano no localStorage
+        savePlansToLocalStorage();
+
+        // Limpa o modal após adicionar
+        document.getElementById('planName').value = '';
+        document.getElementById('planValue').value = '';
+        
+        // Fecha o modal
+        closePlanModal();
+    } else {
+        alert("Por favor, insira um nome válido e um valor para o plano.");
+    }
+}
+
+// Função para salvar os planos no localStorage
+function savePlansToLocalStorage() {
+    const valorPropostaSelect = document.getElementById('valorProposta');
+    const options = valorPropostaSelect.options;
+
+    const plans = [];
+    for (let i = 0; i < options.length; i++) {
+        plans.push({
+            text: options[i].text,
+            value: options[i].value
+        });
+    }
+
+    localStorage.setItem('planos', JSON.stringify(plans));
+    console.log("Planos salvos no localStorage:", plans);
+}
+
+// Função para editar o plano selecionado
+function editPlan() {
+    const valorPropostaSelect = document.getElementById('valorProposta');
+    const selectedOption = valorPropostaSelect.options[valorPropostaSelect.selectedIndex];
+    
+    const newPlanText = prompt("Editar plano:", selectedOption.text);
+    
+    if (newPlanText) {
+        selectedOption.text = newPlanText;
+
+        const valorNumerico = newPlanText.match(/\d+,\d+/);
+        selectedOption.value = valorNumerico ? parseFloat(valorNumerico[0].replace(',', '.')) : '';
+
+        // Salva os planos editados no localStorage
+        savePlansToLocalStorage();
+    } else {
+        alert("O valor inserido não é válido.");
+    }
+}
+
+// Certifique-se de que as funções sejam vinculadas aos botões e ao modal
+window.addEventListener('DOMContentLoaded', function() {
+    console.log("Carregando planos ao carregar a página.");
+    loadPlans(); // Carrega os planos ao carregar a página
+
+    // Vincula as funções ao botão e ao input de texto
+    document.getElementById('addPlanButton').addEventListener('click', openPlanModal);
+    document.getElementById('confirmPlanButton').addEventListener('click', addCustomPlan);
+    document.getElementById('cancelPlanButton').addEventListener('click', closePlanModal);
+    document.getElementById('editPlanButton').addEventListener('click', editPlan);
+});
+
+
 
 
 // Função para gerar e visualizar o PDF
@@ -671,7 +792,6 @@ async function downloadPDF() {
 }
 
 // Outras funções, se existirem, devem ser definidas aqui também
-
 
 
 window.onload = function() {
